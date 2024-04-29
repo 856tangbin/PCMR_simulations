@@ -14,7 +14,7 @@ We simulate summary statistics using R package `causeSim`: https://github.com/je
 
 The simulated GWAS summary statistics are saved in two folders, `./causeSimData` and `./causeSimData_withoutUncorPlei`. All the simulation data is so large that here we put only two examples in the folders. 
 
-$q \in \{0\%,10\%,20\%,30\%,40\%,50\%\}$
+$$q \in \{0\%,10\%,20\%,30\%,40\%,50\%\}$$
 
 ## 2. 
 
