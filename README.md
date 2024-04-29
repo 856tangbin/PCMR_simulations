@@ -12,5 +12,22 @@ We simulate summary statistics using R package `causeSim`: https://github.com/je
 
 The simulated GWAS summary statistics are saved in two folders, `./causeSimData` and `./causeSimData_withoutUncorPlei`. All the simulation data is so large that here we put only two examples in the folders. 
 
-## 2. 
+## Repeating the simulation analyses
+
+We compared the performance of PCMR and other MR methods (IVW, Egger, Weighted median, Weighted mode, CAUSE and MRAID; MR-PRESSO) based on the generated GWAS summary statistics. The R packages of these methods compared in this study are shown in the following table with the version that we run in this study.
+
+|     Method      |                     R package                     |  Version   | Function  | parameters |
+| :-------------: | :-----------------------------------------------: | :--------: | :-------: | :--------: |
+|       IVW       |              MendelianRandomization               |   0.6.0    |  mr_ivw   |  default   |
+|      Egger      |              MendelianRandomization               |   0.6.0    | mr_egger  |  default   |
+| Weighted-median |              MendelianRandomization               |   0.6.0    | mr_median |  default   |
+|   Median mode   |              MendelianRandomization               |   0.6.0    |  mr_mbe   |  default   |
+|      CAUSE      |     [cause](https://github.com/jean997/cause)     | 1.2.0.0335 |   cause   |  default   |
+|      MRAID      | [MRAID](https://github.com/yuanzhongshang/MRAID)  |    1.0     |   MRAID   |  default   |
+|    MR-PRESSO    | [MRPRESSO](https://github.com/rondolab/MR-PRESSO) |    1.0     | mr_presso |  default   |
+|      PCMR       |    [PCMR](https://github.com/856tangbin/PCMR)     |   0.1.0    |   PCMR    |  default   |
+
+Paths to the executables of the methods need to be specified in `./MRmethod`. All results are provided in the files of `./results` and `./results_withoutUncorPlei`. 
+
+## Real data analyses
 
