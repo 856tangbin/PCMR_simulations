@@ -1,0 +1,6 @@
+Filename,delimeter,skip,Abbreviation,Sample Size...3,Trait,Factor,CHR,BP,rsid,beta,se,A1,A2,P-value,Download link,PMID,First Author(Year)
+PGC3_SCZ_wave3.european.autosome.public.v3.vcf.tsv.gz,tab,73,scz,144605,Schizophrenia,disease,CHROM,POS,ID,BETA,SE,A1,A2,PVAL,-,35396580,Trubetskoy V(2022)
+pgc-bip2021-all.vcf.tsv.gz,tab,72,bip,,Bipolar disorder,disease,,,ID,BETA,SE,A1,A2,PVAL,,34002096,Mullins(2021)
+PGC_UKB_depression_genome-wide_CHR_BP,space,0,mdd,170756,Major depressive disorder,disease,seqnames,pos,MarkerName,LogOR,StdErrLogOR,A1,A2,P,,30718901,Howard(2019)
+PGC_UKB_depression_genome-wide.txt,space,0,mdd1,170756,Major depressive disorder,disease,,,MarkerName,LogOR,StdErrLogOR,A1,A2,P,,30718901,Howard(2019)
+pgc-bip2021-BDI.vcf.tsv.gz,tab,72,bip1,475038,Type 1 bipolar disorder,disease,#CHROM,POS,ID,BETA,SE,A1,A2,PVAL,,34002096,Mullins(2021)
