@@ -1,6 +1,6 @@
 ## Generating GWAS summary statistics
 
-We simulate GWAS summary statistics using R package: `causeSim`: https://github.com/jean997/causeSims. We added the function of setting random number seeds on the basis of `causeSim`： `causeSims_0.1.0.tar.gz` to make the data repeatable. In this package, the LD structure dataset is estimated by 19,490 HapMap variants  on chromosome 19 in the CEU 1000 Genomes population, and this LD pattern is replicated 30 times, generating a genome-sized dataset of 584,700 variants. We apply the same parameters of the CAUSE method [[PMID: 32451458](https://pubmed.ncbi.nlm.nih.gov/32451458/)] in simulations, setting the heritability of exposure and outcome to 0.25, the number of susceptible variants of exposure and outcome to 1000, and the GWAS sample size of exposure and outcome to 40,000. Based on these parameters, we simulated the following scenarios:
+We simulate GWAS summary statistics using the R package`causeSim`: https://github.com/jean997/causeSims. We added the function of setting random number seeds based on`causeSim`： `causeSims_0.1.0.tar.gz` to make the data repeatable. In this package, the LD structure dataset is estimated by 19,490 HapMap variants  on chromosome 19 in the CEU 1000 Genomes population, and this LD pattern is replicated 30 times, generating a genome-sized dataset of 584,700 variants. We apply the same parameters of the CAUSE method [[PMID: 32451458](https://pubmed.ncbi.nlm.nih.gov/32451458/)] in simulations, setting the heritability of exposure and outcome to 0.25, the number of susceptible variants of exposure and outcome to 1000, and the GWAS sample size of exposure and outcome to 40,000. Based on these parameters, we simulated the following scenarios:
 
 | Shell script in this repository      | Scenarios                                                    |
 | :----------------------------------- | :----------------------------------------------------------- |
@@ -12,7 +12,7 @@ The simulated GWAS summary statistics are saved in two folders, `./causeSimData`
 
 ## Repeating the simulation analyses
 
-We compared the performance of PCMR and other MR methods (IVW, Egger, Weighted median, Weighted mode, CAUSE and MRAID; MR-PRESSO) based on the generated GWAS summary statistics. The R packages of these methods compared in this study are shown in the following table with the version that we run in this study.
+We compared the performance of PCMR and other MR methods (IVW, Egger, Weighted median, Weighted mode, CAUSE and MRAID; MR-PRESSO) based on the generated GWAS summary statistics. The R packages of these methods compared in this study are shown in the following table with the version that we run.
 
 |     Method      |                     R package                     |  Version   | Function  | parameters |
 | :-------------: | :-----------------------------------------------: | :--------: | :-------: | :--------: |
@@ -25,9 +25,9 @@ We compared the performance of PCMR and other MR methods (IVW, Egger, Weighted m
 |    MR-PRESSO    | [MRPRESSO](https://github.com/rondolab/MR-PRESSO) |    1.0     | mr_presso |  default   |
 |      PCMR       |    [PCMR](https://github.com/856tangbin/PCMR)     |   0.1.0    |   PCMR    |  default   |
 
-Paths to the executables of the methods are in `./MRmethod`, and all results are provided in the files of `./results` and `./results_withoutUncorPlei`. 
+Paths to the executables of the methods are in `./MRmethod`, and all results are provided in the files,`./results` and `./results_withoutUncorPlei`. 
 
 ## Real data analyses
 
-Codes for analysis of each method for common diseases and psychiatric disorders, as well as the results of the analysis in the file `./Application`. For PCMR, we also plotted the clustering results under various trait pairs, at `./Application/Common_disease_analysis/results/PCMR(n=2)_intact` and  `./Application/Psychiatric_disorders_analysis/results/PCMR(n=2)_intact`. 
+The codes for analyses of each method for common diseases and psychiatric disorders, and the results of the analyses are placed in the file`./Application`. For PCMR, we also plotted the clustering results under various trait pairs, at `./Application/Common_disease_analysis/results/PCMR(n=2)_intact` and  `./Application/Psychiatric_disorders_analysis/results/PCMR(n=2)_intact`. 
 
