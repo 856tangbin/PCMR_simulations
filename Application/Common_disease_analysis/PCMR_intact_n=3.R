@@ -124,7 +124,6 @@ sim_cause = function(i){
     AIC_1 = result_1$AIC
     gamma_1 = str_c(result_1$gamma,collapse = "_")
     prop_1 = str_c(result_1$pi_gamma,collapse = "_")
-    corTest_1 = result_1$Pvalue_corTest
     
     b_1 = str_c(result_1$b,collapse = "_")
     sigma2_1 = str_c(result_1$sigma2,collapse = "_")
@@ -138,24 +137,11 @@ sim_cause = function(i){
     AIC_2 = result_2$AIC
     gamma_2 = str_c(result_2$gamma,collapse = "_")
     prop_2 = str_c(result_2$pi_gamma,collapse = "_")
-    corTest_2 = result_2$Pvalue_corTest
+
         
-    P_3 = result_3$Pvalue
-    eff_3 = result_3$effect
-    AIC_3 = result_3$AIC
-    gamma_3 = str_c(result_3$gamma,collapse = "_")
-    prop_3 = str_c(result_3$pi_gamma,collapse = "_")
-    corTest_3 = result_3$Pvalue_corTest
     
-    P_4 = result_4$Pvalue
-    eff_4 = result_4$effect
-    AIC_4 = result_4$AIC
-    gamma_4 = str_c(result_4$gamma,collapse = "_")
-    prop_4 = str_c(result_4$pi_gamma,collapse = "_")
-    corTest_4 = result_4$Pvalue_corTest
-    
-    # cat(paste(risk$Abbreviation,disease$Abbreviation,dim(X_clump)[1],P_1,eff_1,AIC_1,gamma_1,prop_1,corTest_1,P_2,eff_2,AIC_2,gamma_2,prop_2,corTest_2,P_3,eff_3,AIC_3,gamma_3,prop_3,corTest_3,P_4,eff_4,AIC_4,gamma_4,prop_4,corTest_4,"\n",sep="\t"), file=saveFile,append=TRUE)
-    cat(paste(risk$Abbreviation,disease$Abbreviation,dim(X_clump)[1],P_1,eff_1,AIC_1,gamma_1,gSigma2_1,prop_1,b_1,sigma2_1,b_prop_1,corTest_1,P_2,eff_2,AIC_2,gamma_2,prop_2,corTest_2,P_3,eff_3,AIC_3,gamma_3,prop_3,corTest_3,P_4,eff_4,AIC_4,gamma_4,prop_4,corTest_4,"\n",sep="\t"), file=saveFile,append=TRUE)
+    cat(paste(risk$Abbreviation,disease$Abbreviation,dim(X_clump)[1],P_1,eff_1,AIC_1,gamma_1,gSigma2_1,prop_1,b_1,sigma2_1,b_prop_1,
+              P_2,eff_2,AIC_2,gamma_2,prop_2,"\n",sep="\t"), file=saveFile,append=TRUE)
     print(paste0(S," end"))
 }
 
@@ -166,9 +152,10 @@ tests = read.csv(paste0(Dir,"common disease.csv"))
 
 saveFile = paste(savePath,"PCMR(n=3)_intact.txt",sep="/")
 file.create(paste(saveFile,sep="/"))
-# cat(paste("risk","disease","IVs","P_1","eff_1","AIC_1","gamma_1","prop_1","corTest_1","P_2","eff_2","AIC_2","gamma_2","prop_2","corTest_2","P_3","eff_3","AIC_3","gamma_3","prop_3","corTest_3","P_4","eff_4","AIC_4","gamma_4","prop_4","corTest_4\n",sep="\t"), file=saveFile)
 
-cat(paste("risk","disease","IVs","P_1","eff_1","AIC_1","gamma_1","gSigma2_1","prop_1","b_1","sigma2_1","b_prop_1","corTest_1","P_2","eff_2","AIC_2","gamma_2","prop_2","corTest_2","P_3","eff_3","AIC_3","gamma_3","prop_3","corTest_3","P_4","eff_4","AIC_4","gamma_4","prop_4","corTest_4\n",sep="\t"), file=saveFile)
+cat(paste("risk","disease","IVs",
+          "P_random","eff_random","AIC_random","gamma_random","gSigma2_random","prop_random","b_random","sigma2_random","b_prop_random",
+          "P_fixed","eff_fixed","AIC_fixed","gamma_fixed","prop_fixed\n",sep="\t"), file=saveFile)
 
 cl <- makeCluster(48)
 clusterExport(cl,"saveFile",envir = environment())

@@ -28,7 +28,7 @@ sim_cause = function(i){
         result_1 =  PCMR(X_clump$beta_hat_1, X_clump$seb1,
                          X_clump$beta_hat_2,X_clump$seb2,num_gamma = 2,model="1",
                          # sigma2 = init$sigma2,rho=init$rho,isIntact=T)
-                         sigma2 = init$sigma2,isIntact=F)
+                         sigma2 = init$sigma2,isIntact=F) # Two independent sample of GWAS
                                                   
         result_1 = PCMR_cEst(result_1,ref_beta_outcome = X_clump1$beta_hat_2,ref_se_outcome = X_clump1$seb2,cores=12) # estimate the factor c
         result_1 = PCMR_testCausal_bootstrap(result_1,cores=12) # bootstrapping to estimate D_HVP

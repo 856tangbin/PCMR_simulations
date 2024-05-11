@@ -33,17 +33,17 @@ sim_cause = function(i){
                          sigma2 = init$sigma2,rho=init$rho,isIntact=T)
        
         # save results
-        P_1 = result_1$Pvalue
-        eff_1 = result_1$effect
-        AIC_1 = result_1$AIC
-        gamma_1 = str_c(result_1$gamma,collapse = "_")
-        prop_1 = str_c(result_1$pi_gamma,collapse = "_")
+        P_random = result_1$Pvalue
+        eff_random = result_1$effect
+        AIC_random = result_1$AIC
+        gamma_random = str_c(result_1$gamma,collapse = "_")
+        prop_random = str_c(result_1$pi_gamma,collapse = "_")
       
-        P_2 = result_2$Pvalue
-        eff_2 = result_2$effect
-        AIC_2 = result_2$AIC
-        gamma_2 = str_c(result_2$gamma,collapse = "_")
-        prop_2 = str_c(result_2$pi_gamma,collapse = "_")
+        P_fixed = result_2$Pvalue
+        eff_fixed = result_2$effect
+        AIC_fixed = result_2$AIC
+        gamma_fixed = str_c(result_2$gamma,collapse = "_")
+        prop_fixed = str_c(result_2$pi_gamma,collapse = "_")
         
         cat(paste(i,dim(X_clump)[1],
                   P_random,eff_random,AIC_random,gamma_random,prop_random,

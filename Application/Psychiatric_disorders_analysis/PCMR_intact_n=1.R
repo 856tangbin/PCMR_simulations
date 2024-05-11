@@ -1,23 +1,13 @@
 library(cause)
 library(parallel) # ???߳?
 
-saveSvg = function(result,S,model){
-    svg(
-        filename = paste0("./Application/Psychiatric_disorders_analysis/results/PCMR(n=1)_intact/",S[1],"_",S[2],"model",model,".svg"), # ?ļ?????
-        width = 7,           # ??
-        height = 7,          # ??
-    )              # ?ֱ???
-    PCMR_plot(result)
-    dev.off()
-}
-
 sim_cause = function(i){
     library(cause)
     library(readr)
     library(dplyr)
     library(PCMR)
     
-    Dir = "./Application/Psychiatric_disorders_analysis/trait/"
+    Dir = "./Application/Common_disease_analysis/trait/"
     trait = read.csv(paste0(Dir,"trait.csv"))
     tests = read.csv(paste0(Dir,"common disease.csv")) 
     
@@ -74,7 +64,7 @@ sim_cause = function(i){
     # init calculate
     init = PCMR_initEst(X_clump1$beta_hat_1,X_clump1$seb1,
                         X_clump1$beta_hat_2,X_clump1$seb2)
-
+    
     # model fitting
     num_gamma = 1
     
@@ -82,44 +72,23 @@ sim_cause = function(i){
     result_1 = PCMR(X_clump$beta_hat_1, X_clump$seb1,
                     X_clump$beta_hat_2,X_clump$seb2,num_gamma = num_gamma,model="1",
                     sigma2 = init$sigma2,rho=init$rho,isIntact = T)  
-    saveSvg(result_1,S,1)
-
+    
     # model 2 : gSigma2 F ; sigma2 T
     result_2 =  PCMR(X_clump$beta_hat_1, X_clump$seb1,
-                    X_clump$beta_hat_2,X_clump$seb2,num_gamma = num_gamma,model="2",
-                    sigma2 = init$sigma2,rho=init$rho,isIntact = T)
-    saveSvg(result_2,S,2)
-    
-    # model 3 : gSigma2 T ; sigma2 F
-    result_3 =  PCMR(X_clump$beta_hat_1, X_clump$seb1,
-                    X_clump$beta_hat_2,X_clump$seb2,num_gamma = num_gamma,model="3",
-                    sigma2 = init$sigma2,rho=init$rho,isIntact = T)  
-    saveSvg(result_3,S,3)
-    
-    # model 4 : gSigma2 F ; sigma2 F
-    result_4 =  PCMR(X_clump$beta_hat_1, X_clump$seb1,
-                    X_clump$beta_hat_2,X_clump$seb2,num_gamma = num_gamma,model="4",
-                    sigma2 = init$sigma2,rho=init$rho,isIntact = T)
-    saveSvg(result_4,S,4)
+                     X_clump$beta_hat_2,X_clump$seb2,num_gamma = num_gamma,model="2",
+                     sigma2 = init$sigma2,rho=init$rho,isIntact = T)
     
     # save results
     P_1 = result_1$Pvalue
     eff_1 = result_1$effect
     AIC_1 = result_1$AIC
-  
+    
     P_2 = result_2$Pvalue
     eff_2 = result_2$effect
     AIC_2 = result_2$AIC
-        
-    P_3 = result_3$Pvalue
-    eff_3 = result_3$effect
-    AIC_3 = result_3$AIC
     
-    P_4 = result_4$Pvalue
-    eff_4 = result_4$effect
-    AIC_4 = result_4$AIC
     
-    cat(paste(risk$Abbreviation,disease$Abbreviation,dim(X_clump)[1],P_1,eff_1,AIC_1,P_2,eff_2,AIC_2,P_3,eff_3,AIC_3,P_4,eff_4,AIC_4,"\n",sep="\t"), file=saveFile,append=TRUE)
+    cat(paste(risk$Abbreviation,disease$Abbreviation,dim(X_clump)[1],P_1,eff_1,AIC_1,P_2,eff_2,AIC_2,"\n",sep="\t"), file=saveFile,append=TRUE)
 }
 
 
@@ -129,7 +98,9 @@ tests = read.csv(paste0(Dir,"common disease.csv"))
 
 saveFile = paste(savePath,"PCMR(n=1)_intact.txt",sep="/")
 file.create(paste(saveFile,sep="/"))
-cat(paste("risk","disease","IVs","P_1","eff_1","AIC_1","P_2","eff_2","AIC_2","P_3","eff_3","AIC_3","P_4","eff_4","AIC_4\n",sep="\t"), file=saveFile)
+cat(paste("risk","disease","IVs",
+          "P_random","eff_random","AIC_random",
+          "P_fixed","eff_fixed","AIC_fixed\n",sep="\t"), file=saveFile)
 
 cl <- makeCluster(48)
 clusterExport(cl,"saveFile",envir = environment())
