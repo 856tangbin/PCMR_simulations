@@ -90,7 +90,7 @@ for(folder in folders){
   if(!file.exists(saveFile)){
     file.create(paste(saveFile,sep="/"))
     cat(paste("simNum","IVsNum",
-              "P_random","eff_random","AIC_random","gamma_random","prop_random",
+              "P_largestGroup","eff_largestGroup","AIC_random","gamma_random","prop_random",
               "eff_mean_minClass","sd_minClass","P_minClass_mean",
               "eff_mean_maxClass","sd_maxClass","P_maxClass_mean",
               "correct_factor","CHVP_test_correct\n",sep="\t"), file=saveFile)
